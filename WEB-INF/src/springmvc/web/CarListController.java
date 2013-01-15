@@ -14,8 +14,8 @@ public class CarListController implements Controller {
  
 		CarManager carManager = new CarManager();
  
-		ModelAndView modelAndView = new ModelAndView("carList");
-		modelAndView.addObject("carList", carManager.getCarList());
+		ModelAndView modelAndView = new ModelAndView("car_list");
+		modelAndView.addObject("car_list", carManager.getCarList());
  
 		return modelAndView;
 	}
