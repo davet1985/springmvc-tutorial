@@ -41,5 +41,18 @@ public class CarManager {
  
 	public List<Car> getCarList() {
 		return carList;
-	}	
+	}
+  
+  public Car createCar(Car c) {
+    Car car = new Car();
+    car.setId((long)carList.size() + 1);
+    car.setBrand(c.getBrand());
+    car.setModel(c.getModel());
+    car.setPrice(c.getPrice());
+   
+    carList.add(car);
+   
+    return car;
+  }
+  
 }
