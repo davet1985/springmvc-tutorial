@@ -11,8 +11,7 @@ import org.springframework.web.servlet.mvc.Controller;
 
 public class HelloWorldController implements Controller {
 
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView handleRequest(HttpServletRequest request,	HttpServletResponse response) throws ServletException, IOException {
 
 		String aMessage = "Hello World MVC!";
 		
