@@ -24,6 +24,7 @@ public class CarNewController extends SimpleFormController {
     	Car defaultCar = new Car();
     	defaultCar.setModel("new model");
     	defaultCar.setPrice(new BigDecimal(15000));
+    	defaultCar.setEngineSize("1600cc");
     	return defaultCar;
     }
  
@@ -46,11 +47,11 @@ public class CarNewController extends SimpleFormController {
     	Long brandId = null;
     	try {
 	    	brandId = Long.parseLong(request.getParameter("brand"));
-		} catch (Exception e) {}		
-		if (brandId != null) {
-			Brand brand = brandManager.getBrandById(brandId);
-			car.setBrand(brand);
-		}    
+		} catch (Exception e) {}
+      if (brandId != null) {
+        Brand brand = brandManager.getBrandById(brandId);
+        car.setBrand(brand);
+      }
     }
  
     @Override

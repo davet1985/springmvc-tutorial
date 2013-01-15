@@ -27,12 +27,14 @@ public class CarManager {
 		car1.setBrand(brand1);
 		car1.setModel("SL 500");
 		car1.setPrice(new BigDecimal(40000));
+    car1.setEngineSize("5000cc");
  
 		Car car2 = new Car();
 		car2.setId((long)2);
 		car2.setBrand(brand2);
 		car2.setModel("607");
 		car2.setPrice(new BigDecimal(35000));
+    car2.setEngineSize("1996cc");
  
 		carList = new LinkedList<Car>();
 		carList.add(car1);
@@ -49,6 +51,7 @@ public class CarManager {
     car.setBrand(c.getBrand());
     car.setModel(c.getModel());
     car.setPrice(c.getPrice());
+    car.setEngineSize(c.getEngineSize());
    
     carList.add(car);
    

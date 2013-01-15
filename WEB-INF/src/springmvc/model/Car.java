@@ -7,6 +7,7 @@ public class Car {
 	private Brand brand;
 	private String model;
 	private BigDecimal price;
+  private String engineSize;
  
 	public Long getId() {
 		return id;
@@ -32,4 +33,10 @@ public class Car {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+  public String getEngineSize() {
+    return engineSize;
+  }
+  public void setEngineSize(String engineSize) {
+    this.engineSize = engineSize;
+  }
 }

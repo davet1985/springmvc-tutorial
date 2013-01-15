@@ -18,6 +18,9 @@
  
 		Price<br />
 		<form:input path="price"/><br /><br />
+    
+		Engine Size<br />
+		<form:input path="engineSize"/><br /><br />
  
 		<input type="submit" value="Submit">
  
