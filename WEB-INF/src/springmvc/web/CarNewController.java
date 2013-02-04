@@ -22,9 +22,10 @@ public class CarNewController extends SimpleFormController {
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
     	Car defaultCar = new Car();
-    	defaultCar.setModel("new model");
-    	defaultCar.setPrice(new BigDecimal(15000));
-    	defaultCar.setEngineSize("1600cc");
+      // don't set the defaults
+    	//defaultCar.setModel("new model");
+    	//defaultCar.setPrice(new BigDecimal(15000));
+    	//defaultCar.setEngineSize("1600cc");
     	return defaultCar;
     }
  
@@ -47,7 +48,10 @@ public class CarNewController extends SimpleFormController {
     	Long brandId = null;
     	try {
 	    	brandId = Long.parseLong(request.getParameter("brand"));
-		} catch (Exception e) {}
+      }
+      catch (Exception e) {
+      }
+      
       if (brandId != null) {
         Brand brand = brandManager.getBrandById(brandId);
         car.setBrand(brand);

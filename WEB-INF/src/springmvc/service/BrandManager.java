@@ -10,6 +10,7 @@ public class BrandManager {
 	private static List<Brand> brandList;
  
 	static {
+  
 		Brand brand1 = new Brand();
 		brand1.setId((long)1);
 		brand1.setName("Mercedes");
@@ -22,7 +23,7 @@ public class BrandManager {
  
 		brandList = new LinkedList<Brand>();
 		brandList.add(brand1);
-		brandList.add(brand2);		
+		brandList.add(brand2);
 	}
  
 	public List<Brand> getBrandList() {
