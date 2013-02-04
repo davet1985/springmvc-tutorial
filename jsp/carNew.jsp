@@ -2,6 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  
 <html>
+  <title>New Car</title>
+  <style>
+.error {
+  color: red;
+}
+  </style>
 <body>
 	<h1>New Car</h1>
  
@@ -12,14 +18,14 @@
 		   <form:options items="${brandList}" itemLabel="name" itemValue="id" />
 		</form:select>
 		<br /><br />
- 
-		Model<br />
+    
+		Model <form:errors path="model" cssClass="error"/><br />
 		<form:input path="model"/><br /><br />
  
-		Price<br />
+		Price <form:errors path="price" cssClass="error"/><br />
 		<form:input path="price"/><br /><br />
     
-		Engine Size<br />
+		Engine Size <form:errors path="engineSize" cssClass="error"/><br/>
 		<form:input path="engineSize"/><br /><br />
  
 		<input type="submit" value="Submit">

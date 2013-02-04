@@ -12,6 +12,10 @@
     <property name="commandClass" value="springmvc.model.Car"/>
     <property name="formView" value="carNew"/>
     <property name="successView" value="list_cars.html"/>
+    <!-- set the validator class -->
+    <property name="validator">
+      <bean class="springmvc.validator.CarValidator"/>
+    </property>
   </bean>
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,5 +23,5 @@
       <property name="prefix" value="/jsp/"/>
       <property name="suffix" value=".jsp"/>
   </bean>
-    
+  
 </beans>
