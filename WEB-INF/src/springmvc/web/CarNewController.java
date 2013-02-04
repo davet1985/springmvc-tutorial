@@ -18,52 +18,62 @@ import springmvc.service.BrandManager;
 import springmvc.service.CarManager;
  
 public class CarNewController extends SimpleFormController {
+	
+  private CarManager carManager;
  
-    @Override
-    protected Object formBackingObject(HttpServletRequest request) throws Exception {
-    	Car defaultCar = new Car();
-      // don't set the defaults
-    	//defaultCar.setModel("new model");
-    	//defaultCar.setPrice(new BigDecimal(15000));
-    	//defaultCar.setEngineSize("1600cc");
-    	return defaultCar;
+  @Override
+  protected Object formBackingObject(HttpServletRequest request) throws Exception {
+    Car defaultCar = new Car();
+    // don't set the defaults
+    //defaultCar.setModel("new model");
+    //defaultCar.setPrice(new BigDecimal(15000));
+    //defaultCar.setEngineSize("1600cc");
+    return defaultCar;
+  }
+
+  @Override
+  protected Map referenceData(HttpServletRequest request) throws Exception {
+    Map<Object, Object> dataMap = new HashMap<Object, Object>();
+    BrandManager brandManager = new BrandManager();
+    dataMap.put("brandList", brandManager.getBrandList());
+    return dataMap;
+  }
+
+  @Override
+  protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+    binder.setDisallowedFields(new String[] {"brand"});
+
+    Car car = (Car)binder.getTarget();
+
+    // set car's brand from request parameter brand id
+    BrandManager brandManager = new BrandManager();    	
+    Long brandId = null;
+    try {
+      brandId = Long.parseLong(request.getParameter("brand"));
     }
- 
-    @Override
-    protected Map referenceData(HttpServletRequest request) throws Exception {
-    	Map<Object, Object> dataMap = new HashMap<Object, Object>();
-    	BrandManager brandManager = new BrandManager();
-    	dataMap.put("brandList", brandManager.getBrandList());
-    	return dataMap;
+    catch (Exception e) {
     }
- 
-    @Override
-    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-    	binder.setDisallowedFields(new String[] {"brand"});
- 
-    	Car car = (Car)binder.getTarget();
- 
-    	// set car's brand from request parameter brand id
-    	BrandManager brandManager = new BrandManager();    	
-    	Long brandId = null;
-    	try {
-	    	brandId = Long.parseLong(request.getParameter("brand"));
-      }
-      catch (Exception e) {
-      }
-      
-      if (brandId != null) {
-        Brand brand = brandManager.getBrandById(brandId);
-        car.setBrand(brand);
-      }
+    
+    if (brandId != null) {
+      Brand brand = brandManager.getBrandById(brandId);
+      car.setBrand(brand);
     }
- 
-    @Override
-    public ModelAndView onSubmit(Object command) throws ServletException {
-    	CarManager carManager = new CarManager();
-    	carManager.createCar((Car)command);
- 
-    	return new ModelAndView(new RedirectView(getSuccessView()));
-    }
+  }
+
+  @Override
+  public ModelAndView onSubmit(Object command) throws ServletException {
+    //CarManager carManager = new CarManager();
+    carManager.createCar((Car)command);
+
+    return new ModelAndView(new RedirectView(getSuccessView()));
+  }
+  
+  public CarManager getCarManager() {
+    return this.carManager;
+  }
+  
+  public void setCarManager(CarManager pCarManager) {
+    this.carManager = pCarManager;
+  }
  
 }
